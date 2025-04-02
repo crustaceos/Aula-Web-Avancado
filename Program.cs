@@ -10,6 +10,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+///STRING DE CONEXÃO COM O BANCO DE DADOS
 var connectionString = builder.Configuration.GetConnectionString("AppDbConnectionString");
 
 builder.Services.AddDbContext<AppDbContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
