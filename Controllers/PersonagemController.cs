@@ -78,6 +78,24 @@ namespace Xablau.Controllers
     
         }
 
+        [HttpDelete("{id}")]
+
+        public async Task<ActionResult> DeletePersonagem(int id, [FromBody]Personagem personagem){
+
+            var buscarPersonagem = await _appDbContext.XablauDB.FindAsync(id);
+
+            if(buscarPersonagem == null){
+                return NotFound("Personagem não encontrado");
+            }
+
+            _appDbContext.Remove(buscarPersonagem);
+
+            await _appDbContext.SaveChangesAsync();
+
+            return Ok(buscarPersonagem);
+
+        }
+
 
     }
 }
